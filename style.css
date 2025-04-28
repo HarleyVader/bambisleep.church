@@ -1,0 +1,537 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+
+:root {
+    --primary-color: #0c2a2ac9;
+    --primary-alt: #15aab5ec;
+    --secondary-color: #40002f;
+    --secondary-alt: #cc0174;
+    --tertiary-color: #cc0174;
+    --tertiary-alt: #01c69eae;
+    --button-color: #df0471;
+    --button-alt: #110000;
+    --nav-color: #0a2626;
+    --nav-alt: #17dbd8;
+    --transparent: #124141ce;
+    --transparent-alt: #ffffff00;
+    --error: #ff3333;
+    --error-bg: rgba(255, 51, 51, 0.1);
+    
+    --accent-color: var(--button-color);
+    --border-color: var(--tertiary-color);
+    --secondary-text-color: var(--primary-alt);
+    --text-color: var(--primary-alt);
+    --bg-color-secondary: var(--nav-color);
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    --primary-color-rgb: 12, 42, 42;
+    --secondary-color-rgb: 64, 0, 47;
+    --tertiary-color-rgb: 204, 1, 116;
+    --nav-color-rgb: 10, 38, 38;
+    --button-color-rgb: 223, 4, 113;
+    
+    --transparent-alt: rgba(var(--primary-color-rgb), 0.2);
+
+    --shimmer-gradient: linear-gradient(
+        90deg, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.2) 50%, 
+        rgba(255,255,255,0) 100%
+    );
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Audiowide", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: var(--secondary-color);
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-alt) var(--primary-color);
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(
+            45deg,
+            rgba(var(--nav-color-rgb), 0.05) 0px,
+            rgba(var(--nav-color-rgb), 0.05) 1px,
+            transparent 1px,
+            transparent 5px
+        );
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container, .content-card, .submission-card {
+    background-color: var(--transparent);
+    border-top: var(--button-color) 3px ridge;
+    border-bottom: var(--button-color) 3px ridge;
+    border-left: var(--secondary-alt) 1px groove;
+    border-right: var(--secondary-alt) 1px groove;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--button-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    background-image: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.8), rgba(var(--nav-color-rgb), 0.7));
+    backdrop-filter: blur(3px);
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.container:hover, .content-card:hover, .submission-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 20px var(--tertiary-color), 0 0 40px rgba(var(--button-color-rgb), 0.4);
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 4px;
+    background-color: var(--nav-color);
+    color: var(--primary-alt);
+    resize: vertical;
+    border-left: var(--primary-alt) 2px ridge;
+    border-right: var(--primary-alt) 2px ridge;
+    border-top: var(--button-color) 2px ridge;
+    border-bottom: var(--button-color) 2px ridge;
+    text-shadow: var(--secondary-color) 2px 2px 2px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+}
+
+input:focus, textarea:focus, select:focus {
+    border: var(--nav-alt) 4px ridge;
+    border-color: var(--tertiary-color);
+    text-shadow: var(--nav-alt) 2px 2px 2px;
+    outline: none;
+    animation: input-pulse 1.5s infinite alternate;
+}
+
+@keyframes input-pulse {
+    0% {
+        box-shadow: 0 0 5px var(--tertiary-color);
+    }
+    100% {
+        box-shadow: 0 0 15px var(--tertiary-color), 0 0 20px var(--button-color);
+    }
+}
+
+button, 
+.submit-btn, 
+.vote-btn,
+.login-btn,
+.signup-btn,
+.action-btn {
+    color: var(--secondary-color);
+    background-color: var(--button-color);
+    text-shadow: var(--tertiary-color) 0.3vw 0.3vw 0.3vw;
+    border: var(--secondary-color) outset 0.3vw;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.6vw;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px var(--tertiary-color), 0 0 20px rgba(var(--button-color-rgb), 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover, 
+.submit-btn:hover, 
+.vote-btn:hover,
+.login-btn:hover,
+.signup-btn:hover,
+.action-btn:hover {
+    color: var(--button-color);
+    background-color: var(--secondary-color);
+    text-shadow: var(--nav-color) 0.3vw 0.3vw 0.3vw;
+    border: var(--button-color) 0.3vw inset;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px var(--tertiary-color), 0 0 30px rgba(var(--button-color-rgb), 0.6);
+    letter-spacing: 0.5px;
+}
+
+h1, h2, h3, .profile-name {
+    color: var(--button-color);
+    text-shadow: var(--secondary-color) 3px 3px 3px;
+    animation: flicker 5s infinite;
+    letter-spacing: 0.05em;
+    filter: drop-shadow(0 0 5px var(--button-color)) drop-shadow(0 0 10px var(--tertiary-color));
+    position: relative;
+    overflow: hidden;
+}
+
+h1::before, h2::before, h3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--shimmer-gradient);
+    animation: shimmer-heading 3s infinite;
+}
+
+@keyframes shimmer-heading {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+@keyframes flicker {
+    0%, 20%, 80%, 100% { color: var(--nav-alt); }
+    30%, 50%, 70% { color: var(--button-color); }
+    10%, 40%, 60%, 90% { color: var(--tertiary-alt); }
+}
+
+p, .content-description {
+    color: var(--primary-alt);
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+}
+
+a {
+    color: var(--nav-alt);
+    text-decoration: underline;
+    padding-bottom: 0.15em;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--tertiary-color);
+    text-shadow: var(--secondary-color) 4px 4px 4px;
+}
+
+/* Header and Navigation */
+header {
+    background-color: var(--primary-color);
+    border-bottom: var(--button-color) 3px ridge;
+    box-shadow: 0 0 15px var(--tertiary-color);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--button-color);
+    text-shadow: var(--secondary-color) 2px 2px 2px;
+    filter: drop-shadow(0 0 5px var(--button-color));
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: var(--primary-alt);
+    text-decoration: none;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--tertiary-color);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--tertiary-color);
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.content-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-title {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.content-meta {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--primary-alt);
+    opacity: 0.8;
+}
+
+.vote-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.vote-btn {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
+    background-color: transparent;
+    color: var(--primary-alt);
+    border: 1px solid var(--primary-alt);
+    box-shadow: none;
+}
+
+.vote-btn:hover {
+    background-color: var(--tertiary-color);
+    color: var(--secondary-color);
+    border-color: var(--tertiary-color);
+    box-shadow: 0 0 10px var(--tertiary-color);
+}
+
+.vote-count {
+    color: var(--nav-alt);
+    font-weight: bold;
+}
+
+/* Submission Form */
+.submission-form {
+    margin-bottom: 3rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--primary-alt);
+}
+
+.submit-btn {
+    margin-top: 1rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    border-top: var(--button-color) 3px ridge;
+    padding: 2rem;
+    text-align: center;
+    color: var(--primary-alt);
+    margin-top: 3rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem 0;
+}
+
+.footer-links a {
+    color: var(--primary-alt);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--tertiary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .container, .content-card, .submission-card {
+        padding: 15px;
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--button-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--tertiary-color);
+    box-shadow: 0 0 10px var(--tertiary-color);
+}
+
+/* Animations */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(var(--button-color-rgb), 0.3);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(var(--tertiary-color-rgb), 0.5);
+    }
+}
+
+/* User Profile Elements */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px ridge var(--tertiary-color);
+    box-shadow: 0 0 15px var(--tertiary-color);
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-name {
+    margin: 0 0 0.5rem 0;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.profile-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--nav-alt);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--primary-alt);
+    opacity: 0.8;
+}
+
+/* XP and Level System */
+.xp-progress-container {
+    margin-top: 15px;
+    padding: 10px;
+    background: var(--nav-color);
+    border-radius: 5px;
+}
+
+.xp-progress-label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: var(--button-color);
+    text-align: center;
+}
+
+.xp-progress-bar {
+    height: 10px;
+    background: var(--primary-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.xp-progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--button-color), var(--secondary-color));
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+/* Notification System */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    border: 2px solid var(--button-color);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px var(--tertiary-color);
+    color: var(--primary-alt);
+    animation: fadeInOut 4s forwards;
+    z-index: 1000;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { opacity: 0; }
+}
