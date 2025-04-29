@@ -17,23 +17,30 @@ app.use(express.static(path.join(__dirname)));
 let db;
 
 // Connect to MongoDB
-async function connectToMongo() {
-  try {
-    const client = new MongoClient(mongoUrl);
-    await client.connect();
-    console.log('Connected to MongoDB');
-    
-    db = client.db();
-    
-    // Create indexes if they don't exist
-    await db.collection('links').createIndex({ votes: -1 });
-    await db.collection('links').createIndex({ date: -1 });
-    await db.collection('links').createIndex({ category: 1 });
-    
-    return client;
-  } catch (err) {
-    console.error('MongoDB connection error:', err);
-    process.exit(1);
+async function connectToMongo(retries = 5) {
+  let attempt = 0;
+  while (attempt < retries) {
+    try {
+      const client = new MongoClient(mongoUrl);
+      await client.connect();
+      console.log('Connected to MongoDB');
+      
+      db = client.db();
+      
+      // Create indexes if they don't exist
+      await db.collection('links').createIndex({ votes: -1 });
+      await db.collection('links').createIndex({ date: -1 });
+      await db.collection('links').createIndex({ category: 1 });
+      
+      return client;
+    } catch (err) {
+      console.error(`MongoDB connection error (attempt ${attempt + 1}):`, err);
+      attempt++;
+      if (attempt === retries) {
+        console.error('Max retries reached. Exiting.');
+        process.exit(1);
+      }
+    }
   }
 }
 
