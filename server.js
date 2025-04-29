@@ -3,7 +3,7 @@ const { MongoClient, ObjectId } = require('mongodb');
 const path = require('path');
 
 // MongoDB connection string from environment variable
-const mongoUrl = process.env.CHURCH_LINK_LIST || 'mongodb://brandynette:CNNvfZi@172.22.78.155:27017/bambisleep-profiles?authSource=admin';
+const mongoUrl = process.env.CHURCH_LINK_LIST;
 
 // Initialize Express
 const app = express();
