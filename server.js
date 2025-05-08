@@ -2,6 +2,9 @@ const express = require('express');
 const { MongoClient, ObjectId } = require('mongodb');
 const path = require('path');
 
+// Load environment variables from .env file
+require('dotenv').config();
+
 // MongoDB connection string from environment variable
 const mongoUrl = process.env.CHURCH_LINK_LIST;
 
