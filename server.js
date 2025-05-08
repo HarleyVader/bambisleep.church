@@ -157,6 +157,9 @@ app.get('/', (req, res) => {
 
 // Start the server
 async function startServer() {
+  // Add this line before starting the server
+  console.log(`Attempting to connect to MongoDB at: ${mongoUrl}`);
+  
   const client = await connectToMongo();
   
   app.listen(PORT, () => {
