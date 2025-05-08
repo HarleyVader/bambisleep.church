@@ -3,7 +3,7 @@ const { MongoClient, ObjectId } = require('mongodb');
 const path = require('path');
 
 // MongoDB connection string from environment variable
-const mongoUrl = process.env.CHURCH_LINK_LIST || 'mongodb://localhost:27017/bambisleep';
+const mongoUrl = process.env.CHURCH_LINK_LIST;
 
 // Add validation to prevent the error
 if (!mongoUrl) {
@@ -11,15 +11,9 @@ if (!mongoUrl) {
   process.exit(1);
 }
 
-// Ensure the connection string has the correct format
-if (!mongoUrl.startsWith('mongodb://') && !mongoUrl.startsWith('mongodb+srv://')) {
-  console.error('Invalid MongoDB connection string format');
-  process.exit(1);
-}
-
 // Initialize Express
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8888;
 
 // Middleware
 app.use(express.json());
